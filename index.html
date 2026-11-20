@@ -1,0 +1,1000 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content, user-scalable=no">
+    <title>第零关·像素乐园</title>
+    <link rel="icon" type="image/png" href="assets/webIcon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="login-card" class="card hidden" role="dialog" aria-labelledby="login-title">
+        <div class="login-identity">
+            <div class="login-brand">
+                <span class="login-brand-mark">
+                    <img src="assets/webIcon.png" alt="" aria-hidden="true">
+                    <strong>L0</strong>
+                </span>
+                <span>
+                    <small>LEVEL ZERO · PIXEL PARK</small>
+                    <h1 id="login-title">第零关·像素乐园</h1>
+                </span>
+            </div>
+            <p class="login-copy">登录后同步留言和排行榜成绩，保留你的街机记录。</p>
+            <div class="login-mode-strip" aria-label="游戏模式">
+                <span>空战射击</span>
+                <span>弹球闯关</span>
+                <span>格斗擂台</span>
+            </div>
+        </div>
+        <div class="login-panel">
+            <div class="login-panel-head">
+                <span>PLAYER ACCESS</span>
+                <strong>账号验证</strong>
+            </div>
+            <div class="login-form">
+                <div class="input-group">
+                    <label for="nickname-input">昵称</label>
+                    <input type="text" id="nickname-input" placeholder="输入游戏昵称" maxlength="12" autocomplete="username" />
+                </div>
+                <div class="input-group">
+                    <label for="login-phone-input">手机号</label>
+                    <input type="tel" id="login-phone-input" placeholder="输入 11 位手机号" maxlength="11" autocomplete="tel" />
+                </div>
+                <div class="login-code-row">
+                    <div class="input-group">
+                        <label for="login-code-input">验证码</label>
+                        <input type="text" id="login-code-input" placeholder="6 位验证码" maxlength="6" inputmode="numeric" />
+                    </div>
+                    <button id="login-send-code-btn" class="btn btn-secondary" type="button">获取验证码</button>
+                </div>
+                <button id="login-btn" class="btn btn-primary">验证并开始</button>
+                <button id="guest-play-btn" class="btn btn-secondary" type="button">暂不登录，游客试玩</button>
+                <div id="login-tip" class="login-tip" aria-live="polite">游客可直接游玩，登录后使用云端功能。</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-page" role="main">
+        <header class="site-header">
+            <div class="header-left">
+                <div class="brand-lockup" aria-label="第零关·像素乐园">
+                    <span class="brand-mark">
+                        <img src="assets/webIcon.png" alt="" aria-hidden="true">
+                        <span>L0</span>
+                    </span>
+                    <span class="brand-text">
+                        <strong>第零关·像素乐园</strong>
+                        <small>ARCADE LOBBY</small>
+                    </span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <div class="account-chip">
+                    <span id="account-mode" class="account-label">游客试玩</span>
+                    <span class="welcome"><span id="welcome-name"></span></span>
+                    <span class="account-rank">随时开玩</span>
+                    <span id="cloud-status" class="cloud-status">本地存档</span>
+                </div>
+                <button id="logout-btn" class="btn btn-ghost">登录 / 同步</button>
+            </div>
+        </header>
+        <nav class="main-nav" aria-label="主导航">
+            <button class="nav-btn active" data-target="home" aria-current="page"><span>首页</span><small>大厅</small></button>
+            <button class="nav-btn" data-target="plane"><span>飞机大战</span><small>空战</small></button>
+            <button class="nav-btn" data-target="brick"><span>超级弹球</span><small>弹射</small></button>
+            <button class="nav-btn" data-target="rps"><span>猜拳</span><small>对决</small></button>
+            <button class="nav-btn" data-target="fight"><span>格斗之王</span><small>主推</small></button>
+            <button class="nav-btn" data-target="abyss"><span>深渊远征</span><small>刷图 RPG</small></button>
+            <button class="nav-btn" data-target="peak-duel"><span>巅峰对决</span><small>卡牌 RPG</small></button>
+            <button class="nav-btn" data-target="mowangcheng"><span>勇闯魔王城</span><small>RPG</small></button>
+            <button class="nav-btn" data-target="pet"><span>宠物王国</span><small>电子宠物</small></button>
+            <button class="nav-btn" data-target="message-board"><span>留言板</span><small>云端</small></button>
+            <button class="nav-btn" data-target="leaderboard"><span>排行榜</span><small>分数</small></button>
+        </nav>
+
+        <section id="home" class="section home-section" aria-labelledby="home-title">
+            <aside id="home-mobile-continue" class="home-mobile-continue hidden" aria-live="polite">
+                <div class="home-mobile-continue-copy">
+                    <small>QUICK RESUME</small>
+                    <strong id="home-mobile-continue-title">开始巅峰对决</strong>
+                    <span id="home-mobile-continue-detail">创建角色，进入天空圣域</span>
+                </div>
+                <button id="home-mobile-continue-btn" class="btn btn-primary" type="button">进入</button>
+            </aside>
+            <div class="home-hero">
+                <div class="home-hero-copy">
+                    <p class="home-kicker">ARCADE ROOM</p>
+                    <h2 id="home-title" class="home-logo"><span>第零关·</span><span>像素乐园</span></h2>
+                    <h3 class="home-tagline"><span>游戏无止境，</span><span>创意不设限。</span></h3>
+                    <p class="home-intro">游戏不只是消遣，更是另一个世界的入口。在这里，你可以是拯救王国的勇者、运筹帷幄的指挥官，也可以只是安静经营一座小岛的旅人。愿你在这里，找到属于自己的诗和远方。</p>
+                    <div class="home-hero-actions">
+                        <button class="start-game-btn btn btn-primary" data-home-start="mowangcheng">勇闯魔王城</button>
+                        <button class="start-game-btn btn btn-secondary" data-home-start="plane">飞机出击</button>
+                    <button class="start-game-btn btn btn-secondary" data-home-start="fight">格斗开打</button>
+                    <button class="start-game-btn btn btn-secondary" data-home-start="abyss">深渊远征</button>
+                    <button class="start-game-btn btn btn-secondary" data-home-start="peak-duel">巅峰对决</button>
+                    <button class="start-game-btn btn btn-secondary" data-home-start="pet">进入宠物王国</button>
+                    </div>
+                </div>
+                <div id="home-featured-carousel" class="home-featured-carousel" role="region" aria-roledescription="轮播图" aria-label="推荐游戏">
+                    <div class="home-featured-heading">
+                        <span class="home-featured-label">精选推荐</span>
+                        <span class="home-featured-counter" aria-hidden="true"><b data-featured-current>01</b><span> / 03</span></span>
+                        <button class="home-featured-toggle" type="button" data-featured-toggle aria-label="暂停自动播放" aria-pressed="true" title="暂停自动播放"><span data-featured-toggle-icon aria-hidden="true">Ⅱ</span></button>
+                    </div>
+                    <div id="home-featured-fight" class="home-featured-slide home-featured-fight is-active" data-featured-slide role="group" aria-roledescription="幻灯片" aria-label="1 / 3：格斗之王" aria-hidden="false">
+                        <button class="home-featured-link start-game-btn" data-home-start="fight" type="button" aria-label="进入格斗之王">
+                            <span class="home-featured-scene" aria-hidden="true"></span>
+                            <span class="home-featured-art" aria-hidden="true"></span>
+                            <span class="home-featured-copy">
+                                <span class="home-featured-genre">热血格斗 · 连招对决</span>
+                                <strong>格斗之王</strong>
+                                <span class="home-featured-description">拳脚之间，打出你的高光时刻。</span>
+                                <span class="home-featured-cta">即刻开打 <span aria-hidden="true">↗</span></span>
+                            </span>
+                        </button>
+                    </div>
+                    <div id="home-featured-mowangcheng" class="home-featured-slide home-featured-mowangcheng" data-featured-slide role="group" aria-roledescription="幻灯片" aria-label="2 / 3：勇闯魔王城" aria-hidden="true" inert>
+                        <button class="home-featured-link start-game-btn" data-home-start="mowangcheng" type="button" aria-label="进入勇闯魔王城">
+                            <span class="home-featured-scene" aria-hidden="true"></span>
+                            <span class="home-featured-art" aria-hidden="true"></span>
+                            <span class="home-featured-copy">
+                                <span class="home-featured-genre">奇幻冒险 · 爬塔养成</span>
+                                <strong>勇闯魔王城</strong>
+                                <span class="home-featured-description">向更高处出发，书写你的勇者传说。</span>
+                                <span class="home-featured-cta">开启冒险 <span aria-hidden="true">↗</span></span>
+                            </span>
+                        </button>
+                    </div>
+                    <div id="home-featured-plane" class="home-featured-slide home-featured-plane" data-featured-slide role="group" aria-roledescription="幻灯片" aria-label="3 / 3：飞机大战" aria-hidden="true" inert>
+                        <button class="home-featured-link start-game-btn" data-home-start="plane" type="button" aria-label="进入飞机大战">
+                            <span class="home-featured-scene" aria-hidden="true"></span>
+                            <span class="home-featured-art" aria-hidden="true"></span>
+                            <span class="home-featured-copy">
+                                <span class="home-featured-genre">弹幕空战 · 自由构筑</span>
+                                <strong>飞机大战</strong>
+                                <span class="home-featured-description">穿越漫天弹幕，下一秒全速出击。</span>
+                                <span class="home-featured-cta">立即出击 <span aria-hidden="true">↗</span></span>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="home-featured-controls" role="group" aria-label="切换推荐游戏">
+                        <div class="home-featured-selectors">
+                            <button type="button" class="active" data-featured-select="0" aria-controls="home-featured-fight" aria-label="查看格斗之王" aria-pressed="true"></button>
+                            <button type="button" data-featured-select="1" aria-controls="home-featured-mowangcheng" aria-label="查看勇闯魔王城" aria-pressed="false"></button>
+                            <button type="button" data-featured-select="2" aria-controls="home-featured-plane" aria-label="查看飞机大战" aria-pressed="false"></button>
+                        </div>
+                        <div class="home-featured-arrows">
+                            <button type="button" data-featured-prev aria-label="上一个推荐游戏"><span aria-hidden="true">←</span></button>
+                            <button type="button" data-featured-next aria-label="下一个推荐游戏"><span aria-hidden="true">→</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-cards" aria-label="游戏列表">
+                <article class="game-card game-card-plane" data-game="plane">
+                    <div class="game-card-top">
+                        <div class="game-icon" aria-hidden="true"><img src="assets/planes/player-standard-fighter.png" alt=""></div>
+                        <span class="game-number">01</span>
+                    </div>
+                    <h3>街机飞机大战</h3>
+                    <p>从普通弹幕打到流派构筑：近战贴脸、飞弹爆破、召唤压场、弹幕洗屏，每局都能靠强化路线打出不一样的节奏。</p>
+                    <div class="game-card-meta">构筑空战 · BOSS 压迫</div>
+                    <div class="game-card-tags" aria-label="游戏标签">
+                        <span>流派</span>
+                        <span>模组</span>
+                        <span>BOSS</span>
+                    </div>
+                    <button class="start-game-btn btn btn-primary btn-card">进入游戏</button>
+                </article>
+                <article class="game-card game-card-brick" data-game="brick">
+                    <div class="game-card-top">
+                        <div class="game-icon game-icon-chest" aria-hidden="true"></div>
+                        <span class="game-number">02</span>
+                    </div>
+                    <h3>超级弹球</h3>
+                    <p>看起来是接球，玩起来是控节奏：角度、道具、连击和清屏时机都要算，适合想放松但又不想无脑点的局。</p>
+                    <div class="game-card-meta">控球清屏 · 连击爽感</div>
+                    <div class="game-card-tags" aria-label="游戏标签">
+                        <span>角度</span>
+                        <span>道具</span>
+                        <span>连击</span>
+                    </div>
+                    <button class="start-game-btn btn btn-primary btn-card">进入游戏</button>
+                </article>
+                <article class="game-card game-card-rps" data-game="rps">
+                    <div class="game-card-top">
+                        <div class="game-icon" aria-hidden="true"><img class="game-icon-wide" src="assets/fighters/ui/vs.png" alt=""></div>
+                        <span class="game-number">03</span>
+                    </div>
+                    <h3>猜拳擂台</h3>
+                    <p>最短的规则，最快的情绪波动。适合开局热手，也适合用几秒钟赌一把读心：稳、贪、反制都能马上见结果。</p>
+                    <div class="game-card-meta">短局博弈 · 读心反制</div>
+                    <div class="game-card-tags" aria-label="游戏标签">
+                        <span>心理战</span>
+                        <span>连胜</span>
+                        <span>速战</span>
+                    </div>
+                    <button class="start-game-btn btn btn-primary btn-card">进入游戏</button>
+                </article>
+                <article class="game-card game-card-fight" data-game="fight">
+                    <div class="game-card-top">
+                        <div class="game-icon" aria-hidden="true"><img class="game-icon-portrait" src="assets/fighters/heroes/zhaoyun/touming-lihui.png" alt=""></div>
+                        <span class="game-number">04</span>
+                    </div>
+                    <h3>格斗之王</h3>
+                    <p>不是只比血条，重点是角色手感。轻重拳脚、气功、闪避、防御和必杀都接进同一套节奏里，适合反复磨连段。</p>
+                    <div class="game-card-meta">角色对战 · 连段练习</div>
+                    <div class="game-card-tags" aria-label="游戏标签">
+                        <span>角色</span>
+                        <span>连招</span>
+                        <span>必杀</span>
+                    </div>
+                    <button class="start-game-btn btn btn-primary btn-card">进入游戏</button>
+                </article>
+                <article class="game-card game-card-abyss" data-game="abyss">
+                    <div class="game-card-top">
+                        <div class="game-icon" aria-hidden="true"><img class="game-icon-wide" src="assets/dnf/enemy/boss/frost-sovereign-full.png" alt=""></div>
+                        <span class="game-number">05</span>
+                    </div>
+                    <h3>格斗之王：深渊远征</h3>
+                    <p>从主城出发，接任务、进传送门、横版清房、打 Boss、拾装备。剑士与格斗家各自存档，60 级区域路线已铺开。</p>
+                    <div class="game-card-meta">横版刷图 · 掉装养成</div>
+                    <div class="game-card-tags" aria-label="游戏标签">
+                        <span>动作</span>
+                        <span>副本</span>
+                        <span>装备</span>
+                    </div>
+                    <button class="start-game-btn btn btn-primary btn-card">开始远征</button>
+                </article>
+                <article class="game-card game-card-peak-duel" data-game="peak-duel">
+                    <div class="game-card-top">
+                        <div class="game-icon" aria-hidden="true"><img class="game-icon-zoom" src="assets/card/icon/chouka-box.png" alt=""></div>
+                        <span class="game-number">06</span>
+                    </div>
+                    <h3>巅峰对决</h3>
+                    <p>带上卡组踏入地下城，按顺序编排击飞、浮空与终结连段。刷取装备、提升属性，用每一回合决定胜负。</p>
+                    <div class="game-card-meta">卡牌构筑 · DNF 连段</div>
+                    <div class="game-card-tags" aria-label="游戏标签">
+                        <span>卡组</span>
+                        <span>装备</span>
+                        <span>连段</span>
+                    </div>
+                    <button class="start-game-btn btn btn-primary btn-card">进入对决</button>
+                </article>
+                <article class="game-card game-card-mowangcheng" data-game="mowangcheng">
+                    <div class="game-card-top">
+                        <div class="game-icon" aria-hidden="true"><img class="game-icon-zoom" src="mowangcheng/custom/hero/originalhero-battlemodel.png" alt=""></div>
+                        <span class="game-number">07</span>
+                    </div>
+                    <h3>勇闯魔王城</h3>
+                    <p>这是现成魔王城的原包接入，不是复刻版。角色皮肤、成长、背包、战斗、商店和本地存档都沿用原来的那一套。</p>
+                    <div class="game-card-meta">原版移植 · 爬塔养成</div>
+                    <div class="game-card-tags" aria-label="游戏标签">
+                        <span>爬塔</span>
+                        <span>养成</span>
+                        <span>存档</span>
+                    </div>
+                    <button class="start-game-btn btn btn-primary btn-card">进入游戏</button>
+                </article>
+                <article class="game-card game-card-pet" data-game="pet">
+                    <div class="game-card-top">
+                        <div class="game-icon" aria-hidden="true"><img src="assets/dnf/enemy/idle/shadow-wolf.png" alt=""></div>
+                        <span class="game-number">08</span>
+                    </div>
+                    <h3>宠物王国</h3>
+                    <p>领养会随真实时间成长的电子伙伴。照顾它的饱腹、清洁、心情与体力，让它在游戏厅主页一直陪着你。</p>
+                    <div class="game-card-meta">实时成长 · 大厅陪伴</div>
+                    <div class="game-card-tags" aria-label="游戏标签">
+                        <span>养成</span>
+                        <span>互动</span>
+                        <span>挂件</span>
+                    </div>
+                    <button class="start-game-btn btn btn-primary btn-card">进入小屋</button>
+                </article>
+            </div>
+        </section>
+        <section id="plane" class="section hidden" aria-labelledby="plane-title">
+            <header class="section-header">
+                <h2 id="plane-title">街机飞机大战</h2>
+                <div class="game-hud">
+                    <div class="hud-item">得分：<span id="plane-score">0</span></div>
+                    <div class="hud-item">关卡：<span id="plane-level">1</span></div>
+                    <div class="hud-item">金币：<span id="plane-coins">0</span></div>
+                    <div class="hud-item">钻石：<span id="plane-diamonds">0</span></div>
+                </div>
+            </header>
+            <div class="game-container">
+                <canvas id="plane-canvas" aria-label="飞机大战游戏画布"></canvas>
+                <div class="plane-controls" role="group" aria-label="游戏控制">
+                    <button id="plane-start" class="btn btn-primary">开始游戏</button>
+                    <button id="plane-restart" class="btn btn-secondary hidden">重新开始</button>
+                    <button id="plane-pause" class="btn btn-secondary hidden">暂停</button>
+                </div>
+                <div id="plane-action-controls" class="plane-action-controls hidden" role="group" aria-label="飞机大战触屏道具按钮">
+                    <button id="plane-bomb-btn" class="plane-action-btn" type="button">炸弹 <span id="plane-bomb-count">0</span></button>
+                    <button id="plane-burst-btn" class="plane-action-btn" type="button">爆发 <span id="plane-burst-count">0</span></button>
+                </div>
+                <div id="plane-control-hint" class="control-hint" aria-hidden="true">
+                    <kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd> 移动 / 拖动画布移动 &nbsp; <kbd>空格</kbd> 射击 &nbsp; <kbd>Q</kbd> 炸弹 &nbsp; <kbd>E</kbd> 爆发 &nbsp; <kbd>Esc</kbd> 暂停
+                </div>
+            </div>
+        </section>
+
+
+        <section id="brick" class="section hidden" aria-labelledby="brick-title">
+            <header class="section-header">
+                <h2 id="brick-title">超级弹球</h2>
+                <div class="game-hud brick-hud">
+                    <div class="hud-item">得分：<span id="brick-score">0</span></div>
+                    <div class="hud-item">关卡：<span id="brick-level">1</span></div>
+                    <div class="hud-item">生命：<span id="brick-lives">3</span></div>
+                    <div class="hud-item">小球：<span id="brick-balls">0</span></div>
+                    <div id="brick-buff" class="hud-item brick-buff">准备发射</div>
+                </div>
+            </header>
+            <div class="game-container brick-game-container">
+                <div class="brick-play-layout">
+                    <div class="brick-stage-shell">
+                        <canvas id="brick-canvas" aria-label="超级弹球游戏画布"></canvas>
+                        <div class="brick-touch-controls" aria-label="触控操作">
+                            <button id="brick-touch-left" class="brick-touch-btn" type="button" aria-label="左移">←</button>
+                            <button id="brick-touch-launch" class="brick-touch-btn brick-touch-launch" type="button">发射</button>
+                            <button id="brick-touch-right" class="brick-touch-btn" type="button" aria-label="右移">→</button>
+                        </div>
+                    </div>
+                    <aside class="brick-side-panel" aria-label="超级弹球操作面板">
+                        <div class="plane-controls brick-controls" role="group" aria-label="超级弹球控制">
+                            <button id="brick-start" class="btn btn-primary">开始游戏</button>
+                            <button id="brick-restart" class="btn btn-secondary hidden">重新开始</button>
+                            <button id="brick-pause" class="btn btn-secondary hidden">暂停</button>
+                        </div>
+                        <div class="brick-economy" aria-label="超级弹球局外升级">
+                            <div class="brick-panel-title">局外升级</div>
+                            <div id="brick-coins" class="brick-coins">金币 0  本局 +0</div>
+                            <div class="brick-upgrades">
+                                <button class="brick-upgrade-btn" type="button" data-brick-upgrade="life"></button>
+                                <button class="brick-upgrade-btn" type="button" data-brick-upgrade="paddle"></button>
+                                <button class="brick-upgrade-btn" type="button" data-brick-upgrade="slowBall"></button>
+                                <button class="brick-upgrade-btn" type="button" data-brick-upgrade="coinGain"></button>
+                                <button class="brick-upgrade-btn" type="button" data-brick-upgrade="magnetRange"></button>
+                                <button class="brick-upgrade-btn" type="button" data-brick-upgrade="reroll"></button>
+                            </div>
+                        </div>
+                        <div class="control-hint" aria-hidden="true">
+                            <kbd>←</kbd><kbd>→</kbd> / <kbd>A</kbd><kbd>D</kbd> &nbsp; <kbd>空格</kbd> &nbsp; <kbd>Esc</kbd>
+                        </div>
+                        <details class="brick-reference">
+                            <summary>砖块与道具图鉴</summary>
+                            <div class="brick-guide" aria-label="超级弹球道具说明">
+                                <span><b>普通砖块</b>：无数字，命中一次立刻破坏</span>
+                                <span><b>数字砖块</b>：彩色显示数字，数字归零才破坏，关卡越高越硬</span>
+                                <span><b>金币砖</b>：击碎后给本局金币，结算后入账</span>
+                                <span><b>炸裂砖</b>：摧毁时伤害周围砖块</span>
+                                <span><b>护盾砖</b>：第一次命中只破盾</span>
+                                <span><b>锁链砖</b>：先打掉 KEY 砖才可伤害</span>
+                                <span><b>危险砖</b>：高分，但会掉落可躲避的过载负面道具</span>
+                                <span><b>🟢 分裂球</b>：从发射板再发射1颗球</span>
+                                <span><b>🟣 双倍分裂</b>：从发射板再发射2颗球</span>
+                                <span><b>🔥 火力</b>：5秒内全部小球伤害+1，可叠加</span>
+                                <span><b>📏 加长板</b>：12秒内长度+15%，可叠加</span>
+                                <span><b>👟 疾跑靴</b>：12秒内速度+10%，可叠加</span>
+                                <span><b>🧲 磁力球</b>：击中板后球粘住，按空格释放</span>
+                                <span><b>◆ 穿透</b>：短时间连续击碎普通砖块</span>
+                                <span><b>❤️ 额外生命</b>：增加1条生命</span>
+                                <span><b>💎 分数加倍</b>：10秒内得分翻倍</span>
+                                <span><b>FEVER</b>：高连击触发额外加分，道具会向发射板吸附</span>
+                                <span><b>⏳ 时间减速</b>：所有球速度减慢6秒</span>
+                                <span><b>🔵 巨球</b>：球变大、伤害更高8秒</span>
+                                <span><b>⚡ 急速</b>：球速加快6秒</span>
+                                <span><b>💥 炸弹</b>：随机摧毁3个砖块</span>
+                            </div>
+                        </details>
+                    </aside>
+                </div>
+                <div class="brick-run-upgrade-panel hidden" id="brick-run-upgrade-panel" role="dialog" aria-modal="true" aria-live="polite">
+                    <div class="brick-run-upgrade-head">
+                        <div>
+                            <span class="brick-panel-title">本局强化</span>
+                            <strong>选择一项强化进入下一关</strong>
+                        </div>
+                        <button class="btn btn-secondary" id="brick-reroll-upgrades" type="button">刷新</button>
+                    </div>
+                    <div class="brick-run-upgrade-choices" id="brick-run-upgrade-choices"></div>
+                </div>
+                <div class="brick-end-panel hidden" id="brick-end-panel" role="dialog" aria-modal="true" aria-live="assertive">
+                    <div class="brick-end-copy">
+                        <span class="brick-panel-title">本局结束</span>
+                        <strong id="brick-end-title">挑战结束</strong>
+                        <p id="brick-end-summary">得分 0 · 关卡 1 · 金币 +0</p>
+                    </div>
+                    <button class="btn btn-primary" id="brick-end-restart" type="button">重新开始</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="rps" class="section hidden" aria-labelledby="rps-title">
+            <header class="section-header">
+                <h2 id="rps-title">猜拳</h2>
+            </header>
+            <div class="rps-game">
+                <div class="rps-stage-card">
+                    <div class="rps-ambience" aria-hidden="true"></div>
+                    <div class="rps-round-status" id="rps-round-status">第 1 关 · 普通战</div>
+                    <div class="rps-run-hud" aria-label="本局状态">
+                        <div class="rps-hud-chip"><span>关卡</span><b id="rps-level">1 / 20</b></div>
+                        <div class="rps-hud-chip"><span>积分</span><b id="rps-score">0</b></div>
+                        <div class="rps-hud-chip"><span>金币</span><b id="rps-coins">0</b></div>
+                        <div class="rps-hud-chip"><span>红心</span><b id="rps-hearts">2</b></div>
+                        <div class="rps-hud-chip rps-style-chip"><span>风格</span><b id="rps-enemy-style">稳健型</b></div>
+                        <div class="rps-hud-chip hidden" id="rps-boss-score-wrap"><span>小比分</span><b id="rps-boss-score">0 : 0</b></div>
+                    </div>
+                    <div class="rps-taunt" id="rps-taunt">20 关挑战开始，电脑只使用固定风格。</div>
+                    <div class="rps-arena">
+                        <div class="rps-player" id="computer-panel">
+                            <div class="choice-display" id="computer-choice-display">?</div>
+                            <p class="player-label">电脑</p>
+                        </div>
+                        <div class="vs-divider">VS</div>
+                        <div class="rps-player" id="player-panel">
+                            <div class="choice-display" id="player-choice-display">?</div>
+                            <p class="player-label">你</p>
+                        </div>
+                    </div>
+                    <div class="rps-result" id="rps-result" aria-live="polite">
+                        <p class="result-text">请选择出拳</p>
+                    </div>
+                    <div class="rps-streak" id="rps-streak">通关连胜：0</div>
+                </div>
+                <div class="choices" role="group" aria-label="出拳选择">
+                    <button class="rps-btn" data-choice="rock" aria-label="出石头">
+                        <span class="btn-emoji">✊</span>
+                        <span class="btn-text">石头</span>
+                    </button>
+                    <button class="rps-btn" data-choice="scissors" aria-label="出剪刀">
+                        <span class="btn-emoji">✌️</span>
+                        <span class="btn-text">剪刀</span>
+                    </button>
+                    <button class="rps-btn" data-choice="paper" aria-label="出布">
+                        <span class="btn-emoji">✋</span>
+                        <span class="btn-text">布</span>
+                    </button>
+                </div>
+                <div class="rps-owned-panel" aria-label="当前拥有天赋">
+                    <div class="rps-panel-title">当前天赋</div>
+                    <div class="rps-owned-talents" id="rps-owned-talents">暂无天赋</div>
+                </div>
+                <div class="rps-talent-panel hidden" id="rps-talent-panel" role="dialog" aria-modal="true" aria-live="polite">
+                    <div class="rps-talent-head">
+                        <div>
+                            <span class="rps-panel-title">选择一个本局天赋</span>
+                            <p id="rps-talent-tip">三选一，选择后进入下一关。</p>
+                        </div>
+                        <button class="btn btn-secondary" id="rps-refresh-talents">刷新 <span id="rps-refresh-cost">2</span> 金币</button>
+                    </div>
+                    <div class="rps-talent-choices" id="rps-talent-choices"></div>
+                </div>
+                <div class="rps-end-panel hidden" id="rps-end-panel" role="dialog" aria-modal="true" aria-live="assertive">
+                    <div class="rps-end-copy">
+                        <span class="rps-panel-title" id="rps-end-kicker">本局结束</span>
+                        <strong id="rps-end-title">挑战失败</strong>
+                        <p id="rps-end-summary">止步第 1 关。</p>
+                    </div>
+                    <button class="btn btn-primary" id="rps-restart-run">重新开始</button>
+                </div>
+                <div class="stats" aria-label="战绩统计">
+                    <div class="stat"><span class="stat-value" id="wins">0</span><span class="stat-label">过关</span></div>
+                    <div class="stat"><span class="stat-value" id="losses">0</span><span class="stat-label">败北</span></div>
+                    <div class="stat"><span class="stat-value" id="draws">0</span><span class="stat-label">平局</span></div>
+                </div>
+                <button id="reset-stats" class="btn btn-ghost">重新开局</button>
+            </div>
+        </section>
+
+        <section id="pet" class="section hidden pet-section" aria-labelledby="pet-title">
+            <header class="section-header pet-section-header">
+                <div>
+                    <p class="pet-eyebrow">PET KINGDOM / LIVING COMPANION</p>
+                    <h2 id="pet-title">宠物王国</h2>
+                </div>
+                <div class="game-hud pet-hud">
+                    <div class="hud-item">阶段：<span id="pet-stage">等待领养</span></div>
+                    <div class="hud-item">状态：<span id="pet-condition">健康</span></div>
+                    <div class="hud-item">相伴：<span id="pet-age">0 分钟</span></div>
+                    <div class="hud-item">宠物币：<span id="pet-coins">0</span></div>
+                    <div class="hud-item">游乐券：<span id="pet-tickets">0</span></div>
+                    <div class="hud-item">连续：<span id="pet-login-streak">1 天</span></div>
+                    <div class="hud-item">同步：<span id="pet-sync-state">本地</span></div>
+                </div>
+            </header>
+
+            <div id="pet-adoption" class="pet-adoption">
+                <div class="pet-adoption-visual" aria-hidden="true">
+                    <span class="pet-adoption-halo"></span>
+                    <img id="pet-adoption-image" src="assets/dnf/enemy/idle/shadow-wolf.png" alt="">
+                </div>
+                <form id="pet-adopt-form" class="pet-adopt-form">
+                    <span class="pet-adopt-index">8 AVAILABLE / 12 COMPANION SLOTS</span>
+                    <h3 id="pet-adoption-species">暗夜幼灵</h3>
+                    <p id="pet-adoption-description">一团来自森林边缘的小小影子，正等着听见自己的名字。</p>
+                    <div id="pet-species-grid" class="pet-species-grid" role="radiogroup" aria-label="选择伙伴种类"></div>
+                    <div class="pet-species-preview">
+                        <span id="pet-adoption-trait">敏锐直觉</span>
+                        <span>力量 <strong id="pet-adoption-strength">5</strong></span>
+                        <span>智力 <strong id="pet-adoption-intelligence">2</strong></span>
+                        <span>魅力 <strong id="pet-adoption-charm">3</strong></span>
+                    </div>
+                    <label for="pet-name-input">伙伴名字</label>
+                    <div class="pet-name-row">
+                        <input id="pet-name-input" type="text" maxlength="10" placeholder="例如：小影" autocomplete="off">
+                        <button class="btn btn-primary" type="submit">确认领养</button>
+                    </div>
+                    <p id="pet-adoption-tip" class="pet-adoption-tip" aria-live="polite">领养后，成长时间会立即开始。</p>
+                </form>
+            </div>
+
+            <div id="pet-game" class="pet-game hidden">
+                <div class="pet-status-strip" aria-label="伙伴状态">
+                    <div class="pet-need" data-pet-need="satiety">
+                        <span class="pet-need-icon" aria-hidden="true">◆</span>
+                        <span class="pet-need-copy"><strong>饱腹</strong><small><span data-need-value>0</span>/100</small></span>
+                        <span class="pet-need-track"><i></i></span>
+                    </div>
+                    <div class="pet-need" data-pet-need="cleanliness">
+                        <span class="pet-need-icon" aria-hidden="true">✦</span>
+                        <span class="pet-need-copy"><strong>清洁</strong><small><span data-need-value>0</span>/100</small></span>
+                        <span class="pet-need-track"><i></i></span>
+                    </div>
+                    <div class="pet-need" data-pet-need="mood">
+                        <span class="pet-need-icon" aria-hidden="true">♪</span>
+                        <span class="pet-need-copy"><strong>心情</strong><small><span data-need-value>0</span>/100</small></span>
+                        <span class="pet-need-track"><i></i></span>
+                    </div>
+                    <div class="pet-need" data-pet-need="energy">
+                        <span class="pet-need-icon" aria-hidden="true">⚡</span>
+                        <span class="pet-need-copy"><strong>体力</strong><small><span data-need-value>0</span>/100</small></span>
+                        <span class="pet-need-track"><i></i></span>
+                    </div>
+                    <div class="pet-need" data-pet-need="health">
+                        <span class="pet-need-icon" aria-hidden="true">♥</span>
+                        <span class="pet-need-copy"><strong>健康</strong><small><span data-need-value>0</span>/100</small></span>
+                        <span class="pet-need-track"><i></i></span>
+                    </div>
+                </div>
+
+                <nav class="pet-world-nav" aria-label="伙伴功能区">
+                    <button class="active" type="button" data-pet-view-target="home" aria-current="page">小屋</button>
+                    <button type="button" data-pet-view-target="training">训练</button>
+                    <button type="button" data-pet-view-target="jobs">打工</button>
+                    <button type="button" data-pet-view-target="exploration">探索</button>
+                    <button type="button" data-pet-view-target="playground">游乐场</button>
+                    <button type="button" data-pet-view-target="competition">比拼馆</button>
+                    <button type="button" data-pet-view-target="roster">伙伴名册</button>
+                    <button type="button" data-pet-view-target="shop">商店与背包</button>
+                </nav>
+
+                <section id="pet-next-action" class="pet-next-action" data-tone="calm" aria-live="polite">
+                    <span id="pet-next-icon" class="pet-next-icon" aria-hidden="true">●</span>
+                    <div><strong id="pet-next-title">今天也在一起</strong><p id="pet-next-copy">看看伙伴现在最想做什么。</p></div>
+                    <button id="pet-next-button" class="btn btn-secondary" type="button" data-target-view="home">查看</button>
+                </section>
+
+                <div class="pet-play-layout" data-pet-view="home">
+                    <div class="pet-room" data-pet-room="home">
+                        <span class="pet-room-light" aria-hidden="true"></span>
+                        <div id="pet-bubble" class="pet-bubble" role="status">我在听。</div>
+                        <div id="pet-avatar" class="pet-avatar" role="button" tabindex="0" aria-label="摸摸伙伴">
+                            <img id="pet-avatar-image" src="assets/dnf/enemy/idle/shadow-wolf.png" alt="伙伴">
+                            <span id="pet-outfit-badge" class="pet-outfit-badge hidden" aria-label="当前装扮"></span>
+                        </div>
+                        <div class="pet-room-floor" aria-hidden="true"></div>
+                        <div class="pet-identity">
+                            <span id="pet-species-name">暗夜幼灵</span>
+                            <strong id="pet-display-name">小影</strong>
+                        </div>
+                    </div>
+
+                    <aside class="pet-care-panel" aria-label="伙伴照顾面板">
+                        <div class="pet-care-head">
+                            <span>DAILY CARE</span>
+                            <h3>今天也在一起</h3>
+                        </div>
+                        <div class="pet-actions">
+                            <button class="pet-action-btn" type="button" data-pet-action="feed">
+                                <span class="pet-action-icon" aria-hidden="true">◆</span>
+                                <span data-action-label>喂食</span>
+                            </button>
+                            <button class="pet-action-btn" type="button" data-pet-action="clean">
+                                <span class="pet-action-icon" aria-hidden="true">✦</span>
+                                <span data-action-label>洗澡</span>
+                            </button>
+                            <button class="pet-action-btn" type="button" data-pet-action="play">
+                                <span class="pet-action-icon" aria-hidden="true">★</span>
+                                <span data-action-label>玩耍</span>
+                            </button>
+                            <button class="pet-action-btn" type="button" data-pet-action="sleep">
+                                <span class="pet-action-icon" aria-hidden="true">☾</span>
+                                <span data-action-label>休息</span>
+                            </button>
+                        </div>
+                        <div id="pet-story-card" class="pet-story-card" aria-live="polite"></div>
+                        <dl class="pet-progress-list">
+                            <div><dt>亲密度</dt><dd id="pet-affection">0</dd></div>
+                            <div><dt>成长值</dt><dd id="pet-growth">0</dd></div>
+                            <div><dt>伙伴等级</dt><dd id="pet-level">Lv.1</dd></div>
+                            <div><dt>赛事段位</dt><dd id="pet-league-rank">青铜伙伴</dd></div>
+                            <div><dt>力量</dt><dd id="pet-strength">1</dd></div>
+                            <div><dt>智力</dt><dd id="pet-intelligence">1</dd></div>
+                            <div><dt>魅力</dt><dd id="pet-charm">1</dd></div>
+                            <div><dt>性格</dt><dd id="pet-personality">正在形成</dd></div>
+                            <div><dt>种族天赋</dt><dd id="pet-talent">尚未发现</dd></div>
+                        </dl>
+                        <div class="pet-daily-block">
+                            <div class="pet-daily-head"><span>DAILY</span><strong>今日清单</strong></div>
+                            <div id="pet-daily-list" class="pet-daily-list"></div>
+                        </div>
+                        <button id="pet-widget-toggle" class="btn btn-secondary pet-widget-toggle" type="button" aria-pressed="true">主页挂件：开启</button>
+                    </aside>
+                </div>
+
+                <section class="pet-core-view hidden" data-pet-view="training" aria-labelledby="pet-training-title">
+                    <header class="pet-view-header">
+                        <div><span>ABILITY LAB</span><h3 id="pet-training-title">能力训练</h3></div>
+                        <p>训练会消耗状态，不同伙伴从各自擅长的起点继续成长。</p>
+                    </header>
+                    <div id="pet-training-grid" class="pet-content-grid pet-training-grid"></div>
+                </section>
+
+                <section class="pet-core-view hidden" data-pet-view="jobs" aria-labelledby="pet-jobs-title">
+                    <header class="pet-view-header">
+                        <div><span>WORK DISTRICT</span><h3 id="pet-jobs-title">街区打工</h3></div>
+                        <label class="pet-duration-control" for="pet-job-duration">班次
+                            <select id="pet-job-duration">
+                                <option value="short">15 分钟</option>
+                                <option value="medium">1 小时</option>
+                                <option value="long">4 小时</option>
+                            </select>
+                        </label>
+                    </header>
+                    <div id="pet-current-job" class="pet-current-job" aria-live="polite"></div>
+                    <div id="pet-job-grid" class="pet-content-grid pet-job-grid"></div>
+                </section>
+
+                <section class="pet-core-view hidden" data-pet-view="exploration" aria-labelledby="pet-exploration-title">
+                    <header class="pet-view-header">
+                        <div><span>NEIGHBORHOOD JOURNEY</span><h3 id="pet-exploration-title">街区探索</h3></div>
+                        <div id="pet-exploration-summary" class="pet-exploration-summary"></div>
+                    </header>
+                    <div id="pet-current-exploration" class="pet-current-exploration" aria-live="polite"></div>
+                    <div id="pet-exploration-grid" class="pet-exploration-grid"></div>
+                    <div class="pet-exploration-progress-layout">
+                        <section class="pet-weekly-block" aria-labelledby="pet-weekly-title">
+                            <header><div><span>WEEKLY</span><h4 id="pet-weekly-title">本周委托</h4></div><strong id="pet-weekly-count">0 / 6</strong></header>
+                            <div id="pet-weekly-list" class="pet-weekly-list"></div>
+                        </section>
+                        <section class="pet-collection-block" aria-labelledby="pet-collection-title">
+                            <header><div><span>MEMORY CABINET</span><h4 id="pet-collection-title">旅行纪念柜</h4></div><strong id="pet-collection-count">0 / 12</strong></header>
+                            <div id="pet-collection-grid" class="pet-collection-grid"></div>
+                        </section>
+                    </div>
+                </section>
+
+                <section class="pet-core-view hidden" data-pet-view="playground" aria-labelledby="pet-playground-title">
+                    <header class="pet-view-header">
+                        <div><span>PLAYGROUND</span><h3 id="pet-playground-title">游乐场</h3></div>
+                        <p>每次挑战进行三回合并取平均分，消耗 1 张游乐券；达到 60 分可提升对应能力。</p>
+                    </header>
+                    <div id="pet-playground-grid" class="pet-playground-grid" aria-label="游乐项目"></div>
+                    <div id="pet-playground-arena" class="pet-playground-arena hidden">
+                        <div class="pet-arena-head">
+                            <div><span>THREE ROUND CHALLENGE</span><strong id="pet-arena-title">追光跑道</strong></div>
+                            <span id="pet-arena-status">准备</span>
+                        </div>
+                        <div id="pet-mini-scene" class="pet-mini-scene" data-game="sprint" aria-hidden="true">
+                            <div class="pet-scene-backdrop"></div>
+                            <div class="pet-scene-sprint-lines"><i></i><i></i><i></i></div>
+                            <div class="pet-scene-memory-stars"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                            <div class="pet-scene-rhythm-bars"><i></i><i></i><i></i><i></i><i></i></div>
+                            <span class="pet-scene-goal">PERFECT</span>
+                            <img id="pet-arena-avatar" class="pet-arena-avatar" src="assets/dnf/enemy/idle/shadow-wolf.png" alt="">
+                        </div>
+                        <div id="pet-memory-board" class="pet-memory-board hidden" aria-label="星图记忆盘"></div>
+                        <div class="pet-round-board" aria-label="三回合得分">
+                            <span data-pet-round="0"><b>01</b><em>--</em></span>
+                            <span data-pet-round="1"><b>02</b><em>--</em></span>
+                            <span data-pet-round="2"><b>03</b><em>--</em></span>
+                        </div>
+                        <div id="pet-timing-track" class="pet-timing-track">
+                            <span id="pet-timing-target" class="pet-timing-target"></span>
+                            <i id="pet-timing-marker" class="pet-timing-marker"></i>
+                        </div>
+                        <div class="pet-arena-controls">
+                            <div class="pet-arena-feedback" aria-live="polite" aria-atomic="true"><strong id="pet-arena-score">READY</strong><span id="pet-arena-copy">选择时机，完成三回合挑战</span></div>
+                            <button id="pet-arena-action" class="btn btn-primary" type="button">开始挑战</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="pet-core-view hidden" data-pet-view="competition" aria-labelledby="pet-competition-title">
+                    <header class="pet-view-header">
+                        <div><span>COMPANION LEAGUE</span><h3 id="pet-competition-title">伙伴比拼馆</h3></div>
+                        <div id="pet-competition-summary" class="pet-competition-summary"></div>
+                    </header>
+                    <div id="pet-competition-types" class="pet-competition-types"></div>
+                    <div id="pet-competition-divisions" class="pet-division-grid"></div>
+                    <div id="pet-competition-stage" class="pet-competition-stage hidden" aria-live="polite"></div>
+                    <div id="pet-competition-result" class="pet-match-result" aria-live="polite">
+                        <span class="pet-match-emblem">赛</span><div><strong>等待登场</strong><p>选择赛事与组别，和街区伙伴一决高下。</p></div>
+                    </div>
+                    <div class="pet-history-block"><h4>最近战绩</h4><div id="pet-competition-history" class="pet-match-history"></div></div>
+                </section>
+
+                <section class="pet-core-view hidden" data-pet-view="roster" aria-labelledby="pet-roster-title">
+                    <header class="pet-view-header">
+                        <div><span>COMPANION ROSTER</span><h3 id="pet-roster-title">伙伴名册</h3></div>
+                        <div class="pet-roster-tools"><span id="pet-roster-capacity">1 / 12</span><button id="pet-sound-toggle" class="btn btn-secondary" type="button" aria-pressed="true">声音：开启</button></div>
+                    </header>
+                    <div id="pet-growth-panel" class="pet-growth-panel"></div>
+                    <div id="pet-owned-roster" class="pet-owned-roster"></div>
+                    <div class="pet-achievement-head"><div><span>LIFETIME GOALS</span><h4>生涯成就</h4></div><strong id="pet-achievement-count">0 / 15</strong></div>
+                    <div id="pet-achievement-grid" class="pet-achievement-grid"></div>
+                    <div class="pet-catalog-head"><div><span>ADOPTION LIST</span><h4>可领养伙伴</h4></div><p>同种伙伴只能领养一只，后续领养费用随名册扩大。</p></div>
+                    <div id="pet-roster-catalog" class="pet-roster-catalog"></div>
+                </section>
+
+                <section class="pet-core-view hidden" data-pet-view="shop" aria-labelledby="pet-shop-title">
+                    <header class="pet-view-header">
+                        <div><span>MARKET & BAG</span><h3 id="pet-shop-title">商店与背包</h3></div>
+                        <div id="pet-shop-tabs" class="pet-shop-tabs" role="tablist" aria-label="商品分类"></div>
+                    </header>
+                    <div class="pet-market-layout">
+                        <div><h4>街区商店</h4><div id="pet-shop-grid" class="pet-item-grid"></div></div>
+                        <div><h4>我的背包</h4><div id="pet-inventory-grid" class="pet-item-grid"></div></div>
+                    </div>
+                </section>
+
+                <div class="pet-event-line" aria-live="polite">
+                    <span>NOW</span>
+                    <p id="pet-event-text">伙伴正在熟悉新家。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="message-board" class="section hidden" aria-labelledby="message-board-title">
+            <header class="section-header">
+                <h2 id="message-board-title">留言板</h2>
+                <div class="game-hud cloud-hud">
+                    <div class="hud-item">状态：<span id="cloud-login-state">未登录</span></div>
+                    <button id="cloud-refresh-user" class="btn btn-secondary">刷新登录</button>
+                </div>
+            </header>
+            <div class="cloud-layout">
+                <div class="cloud-panel cloud-account-panel">
+                    <h3>账号状态</h3>
+                    <div class="cloud-account-card">
+                        <span>当前账号</span>
+                        <strong id="cloud-account-phone">游客试玩</strong>
+                        <p id="cloud-tip" class="cloud-tip">留言板使用进入网站时的登录状态。</p>
+                    </div>
+                    <div class="cloud-actions">
+                        <button id="cloud-login" class="btn btn-primary" type="button">登录后留言 / 同步</button>
+                        <button id="cloud-logout" class="btn btn-ghost">退出登录</button>
+                    </div>
+                </div>
+                <div class="cloud-panel cloud-message-panel">
+                    <h3>大家的留言</h3>
+                    <div id="cloud-messages" class="cloud-messages">
+                        <div class="cloud-empty">正在等待读取留言。</div>
+                    </div>
+                    <div class="cloud-compose">
+                        <input id="cloud-message-input" type="text" maxlength="30" placeholder="输入留言，最多30字">
+                        <button id="cloud-send-message" class="btn btn-primary">发送</button>
+                        <button id="cloud-refresh-messages" class="btn btn-secondary">刷新</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="leaderboard" class="section hidden" aria-labelledby="leaderboard-title">
+            <header class="section-header">
+                <h2 id="leaderboard-title">排行榜</h2>
+                <div class="game-hud leaderboard-hud">
+                    <div class="hud-item">状态：<span id="leaderboard-status">未读取</span></div>
+                    <button id="leaderboard-refresh" class="btn btn-secondary">刷新</button>
+                </div>
+            </header>
+            <div class="leaderboard-shell">
+                <div class="leaderboard-tabs" role="tablist" aria-label="排行榜游戏切换">
+                    <button class="leaderboard-tab active" type="button" data-game="plane" aria-selected="true">飞机大战</button>
+                    <button class="leaderboard-tab" type="button" data-game="brick" aria-selected="false">超级弹球</button>
+                </div>
+                <div id="leaderboard-list" class="leaderboard-list">
+                    <div class="leaderboard-empty">点击刷新读取排行榜。</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="abyss" class="section hidden" aria-labelledby="abyss-title">
+            <header class="section-header abyss-section-header">
+                <div>
+                    <h2 id="abyss-title">格斗之王：深渊远征</h2>
+                    <p class="section-subtitle">原创横版动作刷图 RPG：主城、传送门、多房间副本、装备与本地独立存档。</p>
+                </div>
+                <div class="game-hud abyss-hud"><div class="hud-item">操作：WASD / Space / J / H K L Y U I O P</div></div>
+            </header>
+            <div class="game-container abyss-game-container">
+                <canvas id="abyss-canvas" width="1280" height="720" aria-label="格斗之王：深渊远征游戏画布"></canvas>
+                <section id="abyss-virtual-controls" class="abyss-virtual-controls" aria-label="深渊远征虚拟按键" aria-hidden="true">
+                    <div class="abyss-virtual-dpad" aria-label="移动方向">
+                        <button type="button" data-abyss-key="W" aria-label="向上移动"><span aria-hidden="true">↑</span></button>
+                        <button type="button" data-abyss-key="A" aria-label="向左移动"><span aria-hidden="true">←</span></button>
+                        <button type="button" data-abyss-key="S" aria-label="向下移动"><span aria-hidden="true">↓</span></button>
+                        <button type="button" data-abyss-key="D" aria-label="向右移动"><span aria-hidden="true">→</span></button>
+                    </div>
+                    <div class="abyss-virtual-actions" aria-label="战斗操作">
+                        <button type="button" data-abyss-action="attack" data-tone="attack"><strong>普攻</strong><small>J</small></button>
+                        <button type="button" data-abyss-action="jump"><strong>跳跃</strong><small>Space</small></button>
+                        <button type="button" data-abyss-action="dodge"><strong>闪避</strong><small>Shift</small></button>
+                        <button type="button" data-abyss-action="interact"><strong>交互</strong><small>E</small></button>
+                        <button type="button" data-abyss-action="pause"><strong>暂停</strong><small>菜单</small></button>
+                        <button type="button" data-abyss-action="skill-page" data-tone="skill"><strong>技能页</strong><small>I / II</small></button>
+                    </div>
+                    <div class="abyss-virtual-skillbar" aria-label="技能快捷栏">
+                        <header><strong>技能栏 I</strong><small>用“技能页”切换另外 6 个技能</small></header>
+                        <div>
+                            <button type="button" data-abyss-skill-slot="0"><strong>技能</strong><small>H</small></button>
+                            <button type="button" data-abyss-skill-slot="1"><strong>技能</strong><small>K</small></button>
+                            <button type="button" data-abyss-skill-slot="2"><strong>技能</strong><small>L</small></button>
+                            <button type="button" data-abyss-skill-slot="3"><strong>技能</strong><small>Y</small></button>
+                            <button type="button" data-abyss-skill-slot="4"><strong>技能</strong><small>U</small></button>
+                            <button type="button" data-abyss-skill-slot="5"><strong>技能</strong><small>I</small></button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <section id="peak-duel" class="section hidden peak-duel-section" aria-labelledby="peak-duel-title">
+            <header class="section-header peak-duel-section-header">
+                <div>
+                    <p class="peak-duel-kicker">DNF CARD BATTLE</p>
+                    <h2 id="peak-duel-title">巅峰对决</h2>
+                </div>
+                <div class="peak-duel-resource-bar" aria-label="巅峰对决资源">
+                    <div><img src="assets/coin.png" alt=""><span>金币</span><strong id="peak-duel-gold">0</strong></div>
+                    <div><span class="peak-duel-voucher-mark" aria-hidden="true">V</span><span>代金券</span><strong id="peak-duel-vouchers">0</strong></div>
+                    <div><span class="peak-duel-stamina-mark" aria-hidden="true">TP</span><span>体力</span><strong id="peak-duel-stamina">30/30</strong><small id="peak-duel-stamina-timer">已满</small></div>
+                    <div><span>角色</span><strong id="peak-duel-level">Lv.1</strong></div>
+                </div>
+            </header>
+            <div id="peak-duel-game" class="peak-duel-game">
+                <nav class="peak-duel-nav" aria-label="巅峰对决功能导航">
+                    <button class="active" type="button" data-peak-view="town" aria-current="page">返回主城</button>
+                    <button type="button" data-peak-view="roster">角色选择</button>
+                </nav>
+                <div id="peak-duel-notice" class="peak-duel-notice" role="status" aria-live="polite"></div>
+                <main id="peak-duel-content" class="peak-duel-content"></main>
+                <div id="peak-duel-modal" class="peak-duel-modal hidden" role="dialog" aria-modal="true" aria-labelledby="peak-duel-modal-title"></div>
+            </div>
+        </section>
+
+        <section id="mowangcheng" class="section hidden mowangcheng-section" aria-labelledby="mowangcheng-title">
+            <header class="section-header mowangcheng-header">
+                <div>
+                    <h2 id="mowangcheng-title">勇闯魔王城</h2>
+                    <p class="section-subtitle">原导出包直接挂载，素材、逻辑和本地存档仍由魔王城自身管理。</p>
+                </div>
+                <button class="start-game-btn btn btn-secondary" data-home-start="home" type="button">返回大厅</button>
+                <a class="btn btn-secondary" href="mowangcheng/index.html" target="_blank" rel="noopener">新窗口打开</a>
+            </header>
+            <div class="mowangcheng-shell">
+                <iframe id="mowangcheng-frame" class="mowangcheng-frame" data-src="mowangcheng/index.html" title="勇闯魔王城" allow="autoplay; fullscreen" scrolling="auto"></iframe>
+            </div>
+        </section>
+
+        <section id="fight" class="section hidden" aria-labelledby="fight-title">
+            <header class="section-header">
+                <h2 id="fight-title">格斗之王</h2>
+                <div class="game-hud fight-hud">
+                    <div class="hud-item">P1生命：<span id="fight-p1-hp">100</span></div>
+                    <div class="hud-item">P2生命：<span id="fight-p2-hp">100</span></div>
+                    <div class="hud-item">时间：<span id="fight-time">120</span></div>
+                    <div class="hud-item">回合：<span id="fight-round">1</span></div>
+                </div>
+            </header>
+            <div class="game-container fight-game-container">
+                <div id="fight-setup" class="fight-setup" aria-label="格斗之王开局设置">
+                    <div class="fight-picker-row">
+                        <div class="fight-picker">
+                            <h3>P1 选人</h3>
+                            <div id="fight-p1-roster" class="fight-roster"></div>
+                        </div>
+                        <div class="fight-picker">
+                            <h3>P2 选人</h3>
+                            <div id="fight-p2-roster" class="fight-roster"></div>
+                        </div>
+                    </div>
+                    <div class="fight-picker">
+                        <h3>选择背景</h3>
+                        <div id="fight-bg-picker" class="fight-bg-picker"></div>
+                    </div>
+                </div>
+                <canvas id="fight-canvas" width="960" height="600" aria-label="格斗之王游戏画布"></canvas>
+                <section id="fight-virtual-controls" class="fight-virtual-controls" aria-label="玩家一虚拟按键" aria-hidden="true">
+                    <div class="fight-virtual-dpad" aria-label="移动与防御">
+                        <button type="button" data-fight-key="w" aria-label="跳跃"><span aria-hidden="true">↑</span><small>跳</small></button>
+                        <button type="button" data-fight-key="a" aria-label="向左移动"><span aria-hidden="true">←</span></button>
+                        <button type="button" data-fight-key="s" aria-label="下蹲防御"><span aria-hidden="true">↓</span><small>防</small></button>
+                        <button type="button" data-fight-key="d" aria-label="向右移动"><span aria-hidden="true">→</span></button>
+                    </div>
+                    <div class="fight-virtual-actions" aria-label="攻击与技能">
+                        <button type="button" data-fight-key="j" data-tone="light"><span>轻拳</span><small>J</small></button>
+                        <button type="button" data-fight-key="k" data-tone="heavy"><span>重拳</span><small>K</small></button>
+                        <button type="button" data-fight-key="i" data-tone="skill"><span>气功</span><small>I</small></button>
+                        <button type="button" data-fight-key="l" data-tone="light"><span>轻腿</span><small>L</small></button>
+                        <button type="button" data-fight-key="u" data-tone="heavy"><span>重腿</span><small>U</small></button>
+                        <button type="button" data-fight-key="o" data-tone="super"><span>必杀</span><small>O</small></button>
+                    </div>
+                </section>
+                <div class="fight-controls" role="group" aria-label="格斗控制">
+                    <button id="fight-start" class="btn btn-primary">开始对战</button>
+                    <button id="fight-restart" class="btn btn-secondary hidden">重新开始</button>
+                    <button id="fight-pause" class="btn btn-secondary hidden">暂停</button>
+                    <button id="fight-continue" class="btn btn-primary hidden">继续对战</button>
+                    <button id="fight-home" class="btn btn-secondary hidden">返回主界面</button>
+                </div>
+                <div class="fight-hint" aria-hidden="true">
+                    <strong>P1：</strong> A/D 移动 &nbsp; W 跳跃 &nbsp; S 蹲防 &nbsp; J 轻拳 &nbsp; K 重拳 &nbsp; L 轻腿 &nbsp; U 重腿 &nbsp; I 气功 &nbsp; O 超必杀<br>
+                    <strong>P2：</strong> ←/→ 移动 &nbsp; ↑ 跳跃 &nbsp; ↓ 蹲防 &nbsp; 1 轻拳 &nbsp; 2 重拳 &nbsp; 3 轻腿 &nbsp; 4 重腿 &nbsp; 5 气功 &nbsp; 6 超必杀
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <nav id="mobile-bottom-nav" class="mobile-bottom-nav hidden" aria-label="手机快捷导航">
+        <button type="button" data-mobile-target="home" aria-current="page"><span aria-hidden="true">⌂</span><strong>首页</strong></button>
+        <button type="button" data-mobile-target="peak-duel"><span aria-hidden="true">◇</span><strong>巅峰对决</strong></button>
+        <button type="button" data-mobile-target="home" data-mobile-scroll="game-cards"><span aria-hidden="true">▦</span><strong>全部游戏</strong></button>
+        <button type="button" data-mobile-target="message-board"><span aria-hidden="true">◎</span><strong>我的</strong></button>
+    </nav>
+
+    <div id="pet-widget" class="pet-widget hidden" aria-hidden="true">
+        <aside class="pet-widget-status" aria-label="伙伴当前状态">
+            <header><strong id="pet-widget-status-title">小影 · Lv.1</strong><span id="pet-widget-status-stage">幼年期</span></header>
+            <div class="pet-widget-needs">
+                <div data-pet-widget-need="satiety"><b><span aria-hidden="true">◆</span>饱腹</b><i><span></span></i><em>82</em></div>
+                <div data-pet-widget-need="cleanliness"><b><span aria-hidden="true">✦</span>清洁</b><i><span></span></i><em>88</em></div>
+                <div data-pet-widget-need="mood"><b><span aria-hidden="true">♪</span>心情</b><i><span></span></i><em>86</em></div>
+                <div data-pet-widget-need="energy"><b><span aria-hidden="true">⚡</span>体力</b><i><span></span></i><em>90</em></div>
+                <div data-pet-widget-need="health"><b><span aria-hidden="true">♥</span>健康</b><i><span></span></i><em>100</em></div>
+            </div>
+            <div class="pet-widget-resources" aria-label="伙伴资源">
+                <span><i aria-hidden="true">◆</i> 金币 <strong id="pet-widget-status-coins">0</strong></span>
+                <span><i aria-hidden="true">▣</i> 游乐券 <strong id="pet-widget-status-tickets">0</strong></span>
+            </div>
+            <p id="pet-widget-bubble" class="pet-widget-bubble">我在听。</p>
+        </aside>
+        <div id="pet-widget-menu" class="pet-widget-menu hidden" role="toolbar" aria-label="伙伴快捷操作">
+            <button type="button" data-pet-action="feed" title="喂食" aria-label="喂食"><span aria-hidden="true">◆</span></button>
+            <button type="button" data-pet-action="clean" title="洗澡" aria-label="洗澡"><span aria-hidden="true">✦</span></button>
+            <button type="button" data-pet-action="play" title="玩耍" aria-label="玩耍"><span aria-hidden="true">★</span></button>
+            <button type="button" data-pet-action="sleep" title="休息" aria-label="休息"><span aria-hidden="true">☾</span></button>
+            <button id="pet-widget-roam" type="button" title="固定挂件位置" aria-label="固定挂件位置" aria-pressed="false"><span aria-hidden="true">⌖</span></button>
+            <button id="pet-widget-home" type="button" title="进入小屋" aria-label="进入宠物小屋"><span aria-hidden="true">⌂</span></button>
+        </div>
+        <button id="pet-widget-close" class="pet-widget-close" type="button" title="收起主页挂件" aria-label="收起主页挂件">×</button>
+        <div id="pet-widget-shell" class="pet-widget-shell" role="button" tabindex="0" aria-label="打开伙伴快捷操作" aria-expanded="false" aria-controls="pet-widget-menu">
+            <span id="pet-widget-alert" class="pet-widget-alert hidden" aria-live="polite"></span>
+            <img id="pet-widget-avatar" src="assets/dnf/enemy/idle/shadow-wolf.png" alt="" draggable="false">
+            <span id="pet-widget-name" class="pet-widget-name">小影</span>
+        </div>
+    </div>
+
+    <script src="cloud-features.js"></script>
+    <script type="module" src="js/app.js"></script>
+    <script type="module" src="js/home-carousel.js"></script>
+    <script type="module" src="js/mowangcheng-enhancements.js"></script>
+</body>
+</html>
